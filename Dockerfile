@@ -20,7 +20,8 @@ RUN apt-get install -y -qq --no-install-recommends \
     python3-dev \
     python3-pip \
     unzip \
-    openssh-client
+    openssh-client \
+    netcat
 
 COPY ./install-yq.sh .
 RUN chmod +x ./install-yq.sh && bash install-yq.sh
@@ -36,7 +37,5 @@ WORKDIR /azp
 
 COPY ./start.sh .
 RUN chmod +x start.sh
-
-EXPOSE 8888
 
 ENTRYPOINT [ "./start.sh" ]
