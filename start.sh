@@ -1,4 +1,5 @@
 #!/bin/bash
+# Lifted & modified from https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#linux
 set -e
 
 if [ -z "$AZP_URL" ]; then
