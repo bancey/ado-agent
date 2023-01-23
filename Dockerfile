@@ -22,7 +22,7 @@ RUN apt-get install -y -qq --no-install-recommends \
     unzip \
     openssh-client \
     netcat \
-    py-netaddr
+    python3-netaddr
 
 COPY ./install-yq.sh .
 RUN chmod +x ./install-yq.sh && bash install-yq.sh
