@@ -21,7 +21,8 @@ RUN apt-get install -y -qq --no-install-recommends \
     python3-pip \
     unzip \
     openssh-client \
-    netcat
+    netcat \
+    py-netaddr
 
 COPY ./install-yq.sh .
 RUN chmod +x ./install-yq.sh && bash install-yq.sh
