@@ -21,17 +21,15 @@ RUN apt-get install -y -qq --no-install-recommends \
     python3-pip \
     unzip \
     openssh-client \
-    python3-netaddr
+    python3-netaddr \
+    python3-azure-cli \
+    python3-ansible
 
 COPY ./install-yq.sh .
 RUN chmod +x ./install-yq.sh && bash install-yq.sh
 
 COPY ./install-packer.sh .
 RUN chmod +x ./install-packer.sh && bash install-packer.sh
-
-RUN pip3 install azure-cli
-
-RUN pip3 install ansible
 
 WORKDIR /azp
 
