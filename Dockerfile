@@ -33,12 +33,12 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
 WORKDIR /azp
 
+COPY ./start.sh .
+RUN chmod +x start.sh
+
 RUN useradd -m -d /home/agent agent
 RUN chown -R agent:agent /azp /home/agent
 
 USER agent
-
-COPY ./start.sh .
-RUN chmod +x start.sh
 
 ENTRYPOINT [ "./start.sh" ]
