@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 ARG TARGETPLATFORM
 ENV TARGETARCH=$TARGETPLATFORM
 ENV DEBIAN_FRONTEND=noninteractive
@@ -21,7 +21,6 @@ RUN apt-get install -y -qq --no-install-recommends \
     python3-pip \
     unzip \
     openssh-client \
-    netcat \
     python3-netaddr
 
 COPY ./install-yq.sh .
@@ -30,11 +29,14 @@ RUN chmod +x ./install-yq.sh && bash install-yq.sh
 COPY ./install-packer.sh .
 RUN chmod +x ./install-packer.sh && bash install-packer.sh
 
-RUN pip3 install azure-cli
-
-RUN pip3 install ansible
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
 WORKDIR /azp
+
+RUN useradd -m -d /home/agent agent
+RUN chown -R agent:agent /azp /home/agent
+
+USER agent
 
 COPY ./start.sh .
 RUN chmod +x start.sh
